@@ -1,5 +1,7 @@
 # Night Creatures
 
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
 A character sheet builder for **Vampire: The Masquerade V5**.  
 No account. Just the darkness.
 
@@ -41,6 +43,10 @@ pnpm backend
 ```
 
 Vite proxies `/api/*` to the FastAPI server automatically in development.
+
+## License
+
+This project is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) — free to share and adapt, with attribution, for non-commercial use only.
 
 ## Disclaimer
 
