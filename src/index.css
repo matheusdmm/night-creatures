@@ -1,8 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Inter:wght@300;400;500&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-night-bg: #0d0d0d;
+  --color-night-surface: #1a1717;
+  --color-night-surface2: #231e1e;
+  --color-night-surface3: #2e2626;
+  --color-night-border: #3d2020;
+  --color-night-borderLight: #5a3030;
+
+  --color-blood-dark: #5a0000;
+  --color-blood: #8B0000;
+  --color-blood-bright: #b22222;
+  --color-blood-vivid: #cc2222;
+
+  --color-parchment: #e8dcc8;
+  --color-parchment-muted: #b8a898;
+  --color-parchment-dim: #7a6a5a;
+
+  --color-gold-dark: #8a6a1e;
+  --color-gold: #b8962e;
+  --color-gold-bright: #d4aa40;
+
+  /* Fonts */
+  --font-cinzel: "Cinzel", Georgia, serif;
+  --font-serif: "IM Fell English", Georgia, serif;
+  --font-sans: Inter, system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-blood: 0 0 20px rgba(139, 0, 0, 0.3);
+  --shadow-blood-sm: 0 0 8px rgba(139, 0, 0, 0.2);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
 
 @layer base {
   html,

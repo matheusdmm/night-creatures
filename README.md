@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# Night Creatures
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A character sheet builder for **Vampire: The Masquerade V5**.  
+No account. Just the darkness.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Create and manage multiple vampire characters
+- Full V5 sheet — Attributes, Skills, Disciplines, Advantages, Humanity, Trackers
+- Dice roller with Hunger dice and success counting
+- Sheet validation against V5 rules
+- Character creation guide with clan banes, compulsions, and step-by-step allocation
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Layer    | Tech                         |
+|----------|------------------------------|
+| Frontend | React 19 + TypeScript + Vite |
+| Styling  | Tailwind CSS                 |
+| Backend  | FastAPI + Uvicorn            |
+| Deploy   | Vercel                       |
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Prerequisites:** Node.js, pnpm, Python 3.11+
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Install frontend dependencies
+pnpm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Install backend dependencies
+pip install -r api/requirements.txt
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+```bash
+# Run frontend (http://localhost:5173)
+pnpm dev
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Run backend (http://localhost:8000)
+pnpm backend
 ```
+
+Vite proxies `/api/*` to the FastAPI server automatically in development.
+
+## Disclaimer
+
+*Vampire: The Masquerade* is owned by Paradox Interactive. Night Creatures is an unofficial fan tool with no affiliation.
