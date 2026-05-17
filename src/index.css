@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Inter:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply bg-night-bg text-parchment;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #8b0000 #1a1717;
+  }
+
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #1a1717;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #8b0000;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply font-cinzel text-[10px] tracking-[0.2em] uppercase text-blood-bright
+           border-b border-night-border pb-1 mb-2;
+  }
+
+  .field-label {
+    @apply font-cinzel text-[10px] tracking-[0.15em] uppercase text-parchment-dim;
+  }
+
+  .field-input {
+    @apply bg-transparent border-b border-night-border/60 text-parchment text-sm font-serif
+           focus:outline-none focus:border-blood-bright transition-colors w-full
+           placeholder:text-parchment-dim/30;
+  }
+
+  .panel {
+    @apply bg-night-surface border border-night-border rounded-sm p-4;
+  }
+
+  .panel-dark {
+    @apply bg-night-bg border border-night-border rounded-sm p-3;
+  }
+}
