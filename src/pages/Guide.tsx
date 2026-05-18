@@ -1,6 +1,59 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CLAN_DATA } from '../data/clans';
 import { PREDATOR_TYPES } from '../types/vtm5e';
+
+const SOLO_PROMPT = `You are a Storyteller for Vampire: the Masquerade 5th Edition (VtM V5).
+I will play as my character. Stay faithful to VtM V5 rules throughout.
+
+--- MY CHARACTER ---
+Name: [name]
+Clan: [clan]         Generation: [e.g. 13th]    Blood Potency: [1]
+Concept: [one-line concept, e.g. "disgraced surgeon"]
+Ambition: [long-term goal]
+Desire: [immediate want]
+Predator Type: [type]
+
+Attributes (rate 1–5):
+  Physical — Strength [X] · Dexterity [X] · Stamina [X]
+  Social   — Charisma [X] · Manipulation [X] · Composure [X]
+  Mental   — Intelligence [X] · Wits [X] · Resolve [X]
+
+Key Skills (list non-zero only):
+  [Skill name] [dots], [Skill name] [dots] …
+
+Disciplines:
+  [Discipline] [dot level] — [known powers]
+
+Derived stats:
+  Health [X] · Willpower [X] · Humanity [7] · Hunger [1]
+
+Touchstone: [mortal's name] — [their Conviction]
+Chronicle setting: [city, era, faction — e.g. "São Paulo, 2024, Camarilla-held"]
+Narration language: [e.g. English / Português / Español]
+
+--- STORYTELLER INSTRUCTIONS ---
+Narrate in the second person ("You step into…"), gothic and cinematic,
+in the language specified above. Keep the tone of personal horror:
+VtM is about losing your humanity, not heroism.
+
+Dice pools & rolls:
+- When I attempt something risky, tell me the pool: [Attribute + Skill] and total dice count.
+- Separate how many are normal dice vs. Hunger dice (equal to my current Hunger score).
+- I will roll and report: successes (8–10) and whether any Hunger dice show 1 or 10.
+- Interpret results:
+    Success         — 1 or more hits
+    Failure         — 0 hits (no Hunger die shows 1)
+    Bestial Failure — 0 hits AND a Hunger die shows 1
+    Messy Critical  — success AND a Hunger die shows 10
+
+Track and announce changes to: Hunger, Health, Willpower, Humanity.
+- Hunger rises on failed Rouse checks or when I go without feeding.
+- Rouse check: I roll 1d10 — on 1–5, Hunger rises by 1.
+- Hunger falls after a successful feeding scene.
+
+Start with a brief scene hook that drops me into an immediate situation tied to my Ambition or Desire.
+Set the scene, then pause and wait for my action.`;
 
 interface StepProps {
   number: number;
@@ -40,6 +93,14 @@ function Allocation({ label, value, color = 'text-blood-bright' }: { label: stri
 
 export default function Guide() {
   const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy() {
+    navigator.clipboard.writeText(SOLO_PROMPT).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
 
   return (
     <div className="min-h-screen bg-night-bg">
@@ -300,6 +361,41 @@ export default function Guide() {
             ))}
           </div>
         </Step>
+
+        {/* Solo Play */}
+        <section className="panel space-y-4 border-gold/20">
+          <div className="flex items-baseline gap-3">
+            <span className="font-cinzel text-gold text-2xl shrink-0">✦</span>
+            <h2 className="font-cinzel text-parchment text-xl tracking-wide">Solo Play — AI Storyteller</h2>
+          </div>
+          <div className="pl-9 space-y-4">
+            <p className="text-parchment-muted font-serif leading-relaxed">
+              No group? No problem. Paste the prompt below into any AI assistant — Claude, ChatGPT, Gemini — fill in
+              your character's details, and start playing immediately. It's also a great way to learn the system
+              before joining a full chronicle.
+            </p>
+            <div className="relative">
+              <pre className="panel-dark font-mono text-xs text-parchment-muted leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-72 overflow-y-auto pr-16">
+                {SOLO_PROMPT}
+              </pre>
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="absolute top-2 right-6 bg-night-bg border border-night-borderLight text-parchment-dim
+                           hover:text-parchment font-cinzel text-xs tracking-wider px-3 py-1 rounded transition-colors"
+              >
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
+            <div className="panel-dark space-y-2 text-sm font-serif text-parchment-muted">
+              <p className="font-cinzel text-parchment text-xs tracking-wider uppercase mb-2">Tips</p>
+              <p>• Replace every <code className="bg-night-surface px-1 rounded text-blood-bright font-mono text-xs">[bracketed field]</code> with your character's actual values before sending.</p>
+              <p>• Roll physical dice or use a dice app and report the results — the AI handles narrative and rules.</p>
+              <p>• Set <span className="text-parchment italic">Narration language</span> to your preferred language; the AI will narrate in that language throughout.</p>
+              <p>• If the AI drifts from VtM V5 rules, remind it: <span className="italic">"Stay in VtM V5 rules. My current Hunger is [X]."</span></p>
+            </div>
+          </div>
+        </section>
 
         {/* CTA */}
         <div className="text-center pt-4">
