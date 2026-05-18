@@ -103,7 +103,7 @@ export default function Guide() {
   }
 
   return (
-    <div className="min-h-screen bg-night-bg">
+    <div className="min-h-screen bg-night-bg page-shadow">
       {/* Top bar */}
       <div className="sticky top-0 z-10 bg-night-surface/95 backdrop-blur border-b border-night-border px-4 py-2 flex items-center gap-3">
         <button

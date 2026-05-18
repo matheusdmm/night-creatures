@@ -116,6 +116,35 @@
   animation: icon-swap 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ── Background shadow drift ──────────────────────────────────────────── */
+@keyframes shadow-drift {
+  0%   { background-position: 15% 20%; }
+  50%  { background-position: 82% 68%; }
+  100% { background-position: 28% 88%; }
+}
+
+.page-shadow {
+  background-image: radial-gradient(
+    ellipse 85% 70% at center,
+    rgba(80, 0, 0, 0.13) 0%,
+    transparent 65%
+  );
+  background-size: 220% 220%;
+  animation: shadow-drift 24s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .page-shadow {
+  background-image: radial-gradient(
+    ellipse 85% 70% at center,
+    rgba(110, 32, 53, 0.07) 0%,
+    transparent 65%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-shadow { animation: none; }
+}
+
 @layer components {
   .section-title {
     @apply font-cinzel text-[10px] tracking-[0.2em] uppercase text-blood-bright

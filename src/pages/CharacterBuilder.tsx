@@ -98,7 +98,7 @@ export default function CharacterBuilder() {
     : '';
 
   return (
-    <div className="min-h-screen bg-night-bg">
+    <div className="min-h-screen bg-night-bg page-shadow">
       {/* Sticky top bar */}
       <div className="sticky top-0 z-10 bg-night-surface/95 backdrop-blur border-b border-night-border px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3">
         <button

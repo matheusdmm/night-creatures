@@ -101,7 +101,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-night-bg">
+    <div className="min-h-screen bg-night-bg page-shadow">
       {/* Hero */}
       <header className="text-center py-16 px-4 border-b border-night-border relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(139,0,0,0.15)_0%,_transparent_70%)] pointer-events-none" />
