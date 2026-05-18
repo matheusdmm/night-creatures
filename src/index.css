@@ -87,6 +87,35 @@
   }
 }
 
+/* ── View Transition: organic mask spread from bottom-right button ─────── */
+/* theme-hold keeps the pseudo-element alive while the rAF loop runs */
+@keyframes theme-hold { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: none;
+    z-index: 1;
+  }
+  ::view-transition-new(root) {
+    animation: theme-hold 0.75s forwards;
+    mask: url(#vt-mask);
+    z-index: 2;
+  }
+}
+
+/* ── Theme toggle icon swap ─────────────────────────────────────────────── */
+@keyframes icon-swap {
+  from { opacity: 0; transform: scale(0.3) rotate(-60deg); }
+  to   { opacity: 1; transform: scale(1)   rotate(0deg); }
+}
+
+.theme-icon-swap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: icon-swap 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @layer components {
   .section-title {
     @apply font-cinzel text-[10px] tracking-[0.2em] uppercase text-blood-bright
@@ -105,9 +134,11 @@
 
   .panel {
     @apply bg-night-surface border border-night-border rounded-sm p-4;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02), 0 4px 16px rgba(0,0,0,0.5);
   }
 
   .panel-dark {
     @apply bg-night-bg border border-night-border rounded-sm p-3;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.015), 0 2px 8px rgba(0,0,0,0.4);
   }
 }

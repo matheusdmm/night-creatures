@@ -1,11 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../hooks/useTheme';
 
 export default function HamburgerMenu() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (!open) return;
@@ -59,14 +57,6 @@ export default function HamburgerMenu() {
           >
             How to Play
           </Link>
-          <div className="border-t border-night-border/50" />
-          <button
-            type="button"
-            className={itemClass}
-            onClick={() => { toggleTheme(); setOpen(false); }}
-          >
-            {theme === 'dark' ? '☀ Light Mode' : '☾ Dark Mode'}
-          </button>
         </div>
       )}
     </div>

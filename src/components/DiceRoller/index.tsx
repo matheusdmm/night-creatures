@@ -47,10 +47,10 @@ function DieFace({ value, isHunger }: { value: number; isHunger: boolean }) {
   if (isHunger) {
     if (isTen)
       bg =
-        'bg-blood border-blood-vivid text-parchment font-bold ring-1 ring-gold';
+        'bg-blood border-blood-vivid text-[#e8dcc8] font-bold ring-1 ring-gold';
     else if (isOne)
       bg = 'bg-blood-dark border-blood-vivid text-blood-vivid font-bold';
-    else if (isSuccess) bg = 'bg-blood/60 border-blood-bright text-parchment';
+    else if (isSuccess) bg = 'bg-blood/60 border-blood-bright text-[#e8dcc8]';
     else bg = 'bg-night-surface3 border-blood/40 text-parchment-dim';
   } else {
     if (isTen)

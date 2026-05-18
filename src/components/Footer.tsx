@@ -14,8 +14,8 @@ export default function Footer() {
               Night Creatures
             </p>
             <p className="text-parchment-dim text-sm leading-relaxed">
-              A free character sheet builder for Vampire: The Masquerade V5.
-              No account required.
+              Character builder for Vampire: The Masquerade V5. Local first,
+              just like darkness.
             </p>
           </div>
 
@@ -25,10 +25,16 @@ export default function Footer() {
               <p className="text-[10px] text-parchment-dim uppercase tracking-widest mb-1">
                 App
               </p>
-              <Link to="/" className="text-parchment-dim hover:text-parchment transition-colors">
+              <Link
+                to="/"
+                className="text-parchment-dim hover:text-parchment transition-colors"
+              >
                 Home
               </Link>
-              <Link to="/guide" className="text-parchment-dim hover:text-parchment transition-colors">
+              <Link
+                to="/guide"
+                className="text-parchment-dim hover:text-parchment transition-colors"
+              >
                 How to Play
               </Link>
             </div>
@@ -44,6 +50,14 @@ export default function Footer() {
                 className="text-parchment-dim hover:text-parchment transition-colors"
               >
                 Tome of Changes
+              </a>
+              <a
+                href="https://heroscribe.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-parchment-dim hover:text-parchment transition-colors"
+              >
+                HeroScribe
               </a>
               <a
                 href="https://matheusdmm.dev"
@@ -72,7 +86,8 @@ export default function Footer() {
             .
           </p>
           <p className="italic font-serif">
-            Vampire: The Masquerade is owned by Paradox Interactive. This is an unofficial fan tool.
+            Vampire: The Masquerade is owned by Paradox Interactive. This is an
+            unofficial fan tool.
           </p>
         </div>
       </div>

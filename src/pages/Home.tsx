@@ -114,6 +114,11 @@ export default function Home() {
         <p className="font-serif italic text-parchment-muted text-lg">
           Character Sheet Builder
         </p>
+        <div className="flex items-center justify-center gap-3 mt-6 select-none" aria-hidden>
+          <div className="w-20 h-px bg-gradient-to-r from-transparent to-blood/40" />
+          <span className="font-cinzel text-blood/40 text-xs tracking-[0.4em]">✦ · ✦</span>
+          <div className="w-20 h-px bg-gradient-to-l from-transparent to-blood/40" />
+        </div>
       </header>
 
       <main className="max-w-5xl mx-auto px-4 py-10">
@@ -140,7 +145,7 @@ export default function Home() {
             <button
               type="button"
               onClick={handleNew}
-              className="bg-blood hover:bg-blood-bright text-parchment font-cinzel text-xs sm:text-sm
+              className="bg-blood hover:bg-blood-bright text-[#e8dcc8] font-cinzel text-xs sm:text-sm
                          tracking-widest uppercase px-3 sm:px-5 py-2 rounded transition-colors shadow-blood-sm"
             >
               <span className="hidden sm:inline">+ New Character</span>

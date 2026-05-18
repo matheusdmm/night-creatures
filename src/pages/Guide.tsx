@@ -402,7 +402,7 @@ export default function Guide() {
           <button
             type="button"
             onClick={() => navigate('/')}
-            className="bg-blood hover:bg-blood-bright text-parchment font-cinzel text-sm
+            className="bg-blood hover:bg-blood-bright text-[#e8dcc8] font-cinzel text-sm
                        tracking-widest uppercase px-6 py-3 rounded transition-colors shadow-blood-sm"
           >
             Start Creating
