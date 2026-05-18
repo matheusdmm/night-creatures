@@ -1,13 +1,18 @@
+import { useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useCharacterStorage } from '../hooks/useCharacterStorage';
 import type { Character } from '../types/vtm5e';
+import { exportCharacter, parseImportedCharacter } from '../lib/exportImport';
+import ThemeToggle from '../components/ThemeToggle';
 
 function CharacterCard({
   character,
   onDelete,
+  onExport,
 }: {
   character: Character;
   onDelete: () => void;
+  onExport: () => void;
 }) {
   const navigate = useNavigate();
 
@@ -17,6 +22,19 @@ function CharacterCard({
                  group relative"
       onClick={() => navigate(`/character/${character.id}`)}
     >
+      <button
+        type="button"
+        onClick={e => {
+          e.stopPropagation();
+          onExport();
+        }}
+        className="absolute top-3 right-8 opacity-0 group-hover:opacity-100 text-parchment-dim hover:text-parchment
+                   text-xs transition-opacity"
+        aria-label="Export character"
+        title="Export as JSON"
+      >
+        ↓
+      </button>
       <button
         type="button"
         onClick={e => {
@@ -61,11 +79,25 @@ function CharacterCard({
 
 export default function Home() {
   const navigate = useNavigate();
-  const { characters, createCharacter, deleteCharacter } = useCharacterStorage();
+  const { characters, createCharacter, deleteCharacter, importCharacter } = useCharacterStorage();
+  const importInputRef = useRef<HTMLInputElement>(null);
 
   function handleNew() {
     const c = createCharacter();
     navigate(`/character/${c.id}`);
+  }
+
+  async function handleImportFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    e.target.value = '';
+    try {
+      const character = await parseImportedCharacter(file);
+      importCharacter(character);
+      navigate(`/character/${character.id}`);
+    } catch (err) {
+      alert(`Import failed: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    }
   }
 
   return (
@@ -90,6 +122,7 @@ export default function Home() {
             {characters.length === 0 ? 'No characters' : `${characters.length} character${characters.length > 1 ? 's' : ''}`}
           </h2>
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <Link
               to="/guide"
               className="border border-night-borderLight hover:border-blood text-parchment-dim hover:text-parchment
@@ -97,6 +130,21 @@ export default function Home() {
             >
               How to Play
             </Link>
+            <input
+              ref={importInputRef}
+              type="file"
+              accept=".json,application/json"
+              className="hidden"
+              onChange={handleImportFile}
+            />
+            <button
+              type="button"
+              onClick={() => importInputRef.current?.click()}
+              className="border border-night-borderLight hover:border-blood text-parchment-dim hover:text-parchment
+                         font-cinzel text-sm tracking-widest uppercase px-5 py-2 rounded transition-colors"
+            >
+              Import
+            </button>
             <button
               type="button"
               onClick={handleNew}
@@ -120,6 +168,7 @@ export default function Home() {
                 key={c.id}
                 character={c}
                 onDelete={() => deleteCharacter(c.id)}
+                onExport={() => exportCharacter(c)}
               />
             ))}
           </div>

@@ -6,6 +6,8 @@ import CharacterSheet from '../components/CharacterSheet';
 import DiceRoller from '../components/DiceRoller';
 import { validateSheet } from '../lib/api';
 import type { ValidationResult } from '../lib/api';
+import { exportCharacter } from '../lib/exportImport';
+import ThemeToggle from '../components/ThemeToggle';
 
 type SaveState = 'saved' | 'saving' | 'unsaved';
 
@@ -102,6 +104,16 @@ export default function CharacterBuilder() {
 
         <button
           type="button"
+          onClick={() => exportCharacter(local)}
+          className="font-cinzel text-xs tracking-widest uppercase px-3 py-1 rounded border transition-colors
+            border-night-borderLight text-parchment-dim hover:border-blood hover:text-parchment"
+          title="Export as JSON"
+        >
+          Export
+        </button>
+
+        <button
+          type="button"
           onClick={() => { setShowDice(v => !v); setShowValidation(false); }}
           className={`font-cinzel text-xs tracking-widest uppercase px-3 py-1 rounded border transition-colors
             ${showDice
@@ -128,6 +140,8 @@ export default function CharacterBuilder() {
         <span className={`text-xs font-cinzel tracking-wider ${saveLabelClass[saveState]}`}>
           {saveLabel[saveState]}
         </span>
+
+        <ThemeToggle />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">

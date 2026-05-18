@@ -35,6 +35,33 @@
   --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
+/* ── Light theme overrides ─────────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-night-bg:          #f5f0e8;
+  --color-night-surface:     #ede8de;
+  --color-night-surface2:    #e6dfd2;
+  --color-night-surface3:    #ddd5c7;
+  --color-night-border:      #c8b0a0;
+  --color-night-borderLight: #a08070;
+
+  --color-blood-dark:  #4a1525;
+  --color-blood:       #6e2035;
+  --color-blood-bright:#8c283e;
+  --color-blood-vivid: #a83050;
+
+  --color-parchment:       #1e1210;
+  --color-parchment-muted: #3d2520;
+  --color-parchment-dim:   #7a5548;
+
+  --color-gold-dark:  #6b4a1a;
+  --color-gold:       #8b601c;
+  --color-gold-bright:#a87828;
+
+  --shadow-blood:    0 0 20px rgba(110, 32, 53, 0.12);
+  --shadow-blood-sm: 0 0 8px  rgba(110, 32, 53, 0.10);
+  --shadow-inner:    inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
 @layer base {
   html,
   body {
@@ -43,7 +70,7 @@
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: #8b0000 #1a1717;
+    scrollbar-color: var(--color-blood) var(--color-night-surface);
   }
 
   *::-webkit-scrollbar {
@@ -51,11 +78,11 @@
   }
 
   *::-webkit-scrollbar-track {
-    background: #1a1717;
+    background: var(--color-night-surface);
   }
 
   *::-webkit-scrollbar-thumb {
-    background: #8b0000;
+    background: var(--color-blood);
     border-radius: 3px;
   }
 }

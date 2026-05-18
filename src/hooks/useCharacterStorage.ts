@@ -49,5 +49,9 @@ export function useCharacterStorage() {
     [characters]
   );
 
-  return { characters, createCharacter, updateCharacter, deleteCharacter, getCharacter };
+  const importCharacter = useCallback((character: Character): void => {
+    setCharacters(prev => [character, ...prev]);
+  }, []);
+
+  return { characters, createCharacter, updateCharacter, deleteCharacter, getCharacter, importCharacter };
 }
