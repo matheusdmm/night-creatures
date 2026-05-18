@@ -38,26 +38,26 @@ const RESULT_META: Record<
   },
 };
 
-function DieFace({
-  value,
-  isHunger,
-}: {
-  value: number;
-  isHunger: boolean;
-}) {
+function DieFace({ value, isHunger }: { value: number; isHunger: boolean }) {
   const isSuccess = value >= 6;
   const isTen = value === 10;
   const isOne = value === 1;
 
   let bg = 'bg-night-surface3 border-night-borderLight text-parchment-dim';
   if (isHunger) {
-    if (isTen) bg = 'bg-blood border-blood-vivid text-parchment font-bold ring-1 ring-gold';
-    else if (isOne) bg = 'bg-blood-dark border-blood-vivid text-blood-vivid font-bold';
+    if (isTen)
+      bg =
+        'bg-blood border-blood-vivid text-parchment font-bold ring-1 ring-gold';
+    else if (isOne)
+      bg = 'bg-blood-dark border-blood-vivid text-blood-vivid font-bold';
     else if (isSuccess) bg = 'bg-blood/60 border-blood-bright text-parchment';
     else bg = 'bg-night-surface3 border-blood/40 text-parchment-dim';
   } else {
-    if (isTen) bg = 'bg-night-surface border-gold text-gold-bright font-bold ring-1 ring-gold/40';
-    else if (isSuccess) bg = 'bg-night-surface2 border-blood-bright/60 text-parchment';
+    if (isTen)
+      bg =
+        'bg-night-surface border-gold text-gold-bright font-bold ring-1 ring-gold/40';
+    else if (isSuccess)
+      bg = 'bg-night-surface2 border-blood-bright/60 text-parchment';
     else bg = 'bg-night-surface border-night-border text-parchment-dim';
   }
 
@@ -107,7 +107,7 @@ export default function DiceRoller({ defaultPool = 4, hunger }: Props) {
             min={1}
             max={30}
             value={pool}
-            onChange={e => setPool(Number(e.target.value))}
+            onChange={(e) => setPool(Number(e.target.value))}
             className="w-14 field-input text-center"
           />
         </div>
@@ -130,7 +130,7 @@ export default function DiceRoller({ defaultPool = 4, hunger }: Props) {
             min={1}
             max={10}
             value={difficulty}
-            onChange={e => setDifficulty(Number(e.target.value))}
+            onChange={(e) => setDifficulty(Number(e.target.value))}
             className="w-14 field-input text-center"
           />
         </div>
@@ -139,7 +139,7 @@ export default function DiceRoller({ defaultPool = 4, hunger }: Props) {
           type="button"
           onClick={handleRoll}
           disabled={loading}
-          className="bg-blood hover:bg-blood-bright text-parchment font-cinzel text-xs
+          className="bg-blood hover:bg-blood-bright text-[#e8dcc8] font-cinzel text-xs
                      tracking-widest uppercase px-4 py-2 rounded transition-colors
                      disabled:opacity-50 disabled:cursor-not-allowed"
         >
@@ -147,7 +147,9 @@ export default function DiceRoller({ defaultPool = 4, hunger }: Props) {
         </button>
       </div>
 
-      {error && <p className="text-blood-bright text-xs font-serif italic">{error}</p>}
+      {error && (
+        <p className="text-blood-bright text-xs font-serif italic">{error}</p>
+      )}
 
       {result && meta && (
         <div className="space-y-2 border-t border-night-border pt-3">
@@ -175,12 +177,14 @@ export default function DiceRoller({ defaultPool = 4, hunger }: Props) {
             <p className={`font-cinzel text-lg tracking-wide ${meta.color}`}>
               {meta.label}
             </p>
-            <p className="text-parchment-muted text-xs font-serif italic">{meta.desc}</p>
+            <p className="text-parchment-muted text-xs font-serif italic">
+              {meta.desc}
+            </p>
             <p className="text-parchment text-sm font-cinzel mt-1">
-              {result.successes} success{result.successes !== 1 ? 'es' : ''}
-              {' '}
+              {result.successes} success{result.successes !== 1 ? 'es' : ''}{' '}
               <span className="text-parchment-dim text-xs">
-                (margin: {result.margin >= 0 ? '+' : ''}{result.margin})
+                (margin: {result.margin >= 0 ? '+' : ''}
+                {result.margin})
               </span>
             </p>
           </div>

@@ -1,9 +1,9 @@
 import { useRef } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useCharacterStorage } from '../hooks/useCharacterStorage';
 import type { Character } from '../types/vtm5e';
 import { exportCharacter, parseImportedCharacter } from '../lib/exportImport';
-import ThemeToggle from '../components/ThemeToggle';
+import HamburgerMenu from '../components/HamburgerMenu';
 
 function CharacterCard({
   character,
@@ -28,7 +28,7 @@ function CharacterCard({
           e.stopPropagation();
           onExport();
         }}
-        className="absolute top-3 right-8 opacity-0 group-hover:opacity-100 text-parchment-dim hover:text-parchment
+        className="absolute top-3 right-8 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 text-parchment-dim hover:text-parchment
                    text-xs transition-opacity"
         aria-label="Export character"
         title="Export as JSON"
@@ -41,7 +41,7 @@ function CharacterCard({
           e.stopPropagation();
           if (confirm(`Delete "${character.name || 'Unnamed'}"?`)) onDelete();
         }}
-        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 text-blood hover:text-blood-vivid
+        className="absolute top-3 right-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 text-blood hover:text-blood-vivid
                    text-xs transition-opacity"
         aria-label="Delete character"
       >
@@ -108,7 +108,7 @@ export default function Home() {
         <p className="text-blood text-xs font-cinzel tracking-[0.4em] uppercase mb-3">
           Vampire: The Masquerade V5
         </p>
-        <h1 className="font-cinzel font-bold text-5xl md:text-7xl text-parchment tracking-wider mb-3">
+        <h1 className="font-cinzel font-bold text-4xl sm:text-5xl md:text-7xl text-parchment tracking-wider mb-3">
           Night Creatures
         </h1>
         <p className="font-serif italic text-parchment-muted text-lg">
@@ -117,19 +117,11 @@ export default function Home() {
       </header>
 
       <main className="max-w-5xl mx-auto px-4 py-10">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
           <h2 className="font-cinzel text-parchment-muted text-sm tracking-[0.2em] uppercase">
             {characters.length === 0 ? 'No characters' : `${characters.length} character${characters.length > 1 ? 's' : ''}`}
           </h2>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <Link
-              to="/guide"
-              className="border border-night-borderLight hover:border-blood text-parchment-dim hover:text-parchment
-                         font-cinzel text-sm tracking-widest uppercase px-5 py-2 rounded transition-colors"
-            >
-              How to Play
-            </Link>
+          <div className="flex items-center gap-2">
             <input
               ref={importInputRef}
               type="file"
@@ -141,18 +133,20 @@ export default function Home() {
               type="button"
               onClick={() => importInputRef.current?.click()}
               className="border border-night-borderLight hover:border-blood text-parchment-dim hover:text-parchment
-                         font-cinzel text-sm tracking-widest uppercase px-5 py-2 rounded transition-colors"
+                         font-cinzel text-xs sm:text-sm tracking-widest uppercase px-3 sm:px-5 py-2 rounded transition-colors"
             >
               Import
             </button>
             <button
               type="button"
               onClick={handleNew}
-              className="bg-blood hover:bg-blood-bright text-parchment font-cinzel text-sm
-                         tracking-widest uppercase px-5 py-2 rounded transition-colors shadow-blood-sm"
+              className="bg-blood hover:bg-blood-bright text-parchment font-cinzel text-xs sm:text-sm
+                         tracking-widest uppercase px-3 sm:px-5 py-2 rounded transition-colors shadow-blood-sm"
             >
-              + New Character
+              <span className="hidden sm:inline">+ New Character</span>
+              <span className="sm:hidden">+ New</span>
             </button>
+            <HamburgerMenu />
           </div>
         </div>
 

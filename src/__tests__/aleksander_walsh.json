@@ -1,0 +1,92 @@
+{
+  "id": "7f3a2b1c-4d5e-6f7a-8b9c-0d1e2f3a4b5c",
+  "name": "Aleksander Walsh",
+  "player": "",
+  "chronicle": "",
+  "concept": "",
+  "ambition": "Construir um território seguro na cena underground de Dublin — e descobrir quem é sua sire e o que ela quer de você antes que ela volte.",
+  "desire": "Entender o que ele se tornou.",
+  "predatorType": "Consensualist",
+  "clan": "Toreador",
+  "generation": 13,
+  "sire": "",
+  "attributes": {
+    "strength": 3,
+    "dexterity": 4,
+    "stamina": 2,
+    "charisma": 3,
+    "manipulation": 1,
+    "composure": 2,
+    "intelligence": 1,
+    "wits": 2,
+    "resolve": 1
+  },
+  "physicalSkills": [
+    { "id": "athletics", "name": "Athletics", "rating": 2, "specialty": "" },
+    { "id": "brawl",     "name": "Brawl",     "rating": 3, "specialty": "" },
+    { "id": "craft",     "name": "Craft",     "rating": 3, "specialty": "" },
+    { "id": "drive",     "name": "Drive",     "rating": 0, "specialty": "" },
+    { "id": "firearms",  "name": "Firearms",  "rating": 0, "specialty": "" },
+    { "id": "larceny",   "name": "Larceny",   "rating": 0, "specialty": "" },
+    { "id": "melee",     "name": "Melee",     "rating": 0, "specialty": "" },
+    { "id": "stealth",   "name": "Stealth",   "rating": 2, "specialty": "" },
+    { "id": "survival",  "name": "Survival",  "rating": 1, "specialty": "" }
+  ],
+  "socialSkills": [
+    { "id": "animal-ken",   "name": "Animal Ken",   "rating": 0, "specialty": "" },
+    { "id": "etiquette",    "name": "Etiquette",    "rating": 0, "specialty": "" },
+    { "id": "insight",      "name": "Insight",      "rating": 0, "specialty": "" },
+    { "id": "intimidation", "name": "Intimidation", "rating": 0, "specialty": "" },
+    { "id": "leadership",   "name": "Leadership",   "rating": 3, "specialty": "" },
+    { "id": "performance",  "name": "Performance",  "rating": 2, "specialty": "" },
+    { "id": "persuasion",   "name": "Persuasion",   "rating": 0, "specialty": "" },
+    { "id": "streetwise",   "name": "Streetwise",   "rating": 0, "specialty": "" },
+    { "id": "subterfuge",   "name": "Subterfuge",   "rating": 0, "specialty": "" }
+  ],
+  "mentalSkills": [
+    { "id": "academics",    "name": "Academics",    "rating": 0, "specialty": "" },
+    { "id": "awareness",    "name": "Awareness",    "rating": 2, "specialty": "" },
+    { "id": "finance",      "name": "Finance",      "rating": 0, "specialty": "" },
+    { "id": "investigation","name": "Investigation","rating": 1, "specialty": "" },
+    { "id": "medicine",     "name": "Medicine",     "rating": 0, "specialty": "" },
+    { "id": "occult",       "name": "Occult",       "rating": 4, "specialty": "" },
+    { "id": "politics",     "name": "Politics",     "rating": 0, "specialty": "" },
+    { "id": "science",      "name": "Science",      "rating": 0, "specialty": "" },
+    { "id": "technology",   "name": "Technology",   "rating": 1, "specialty": "" }
+  ],
+  "disciplines": [
+    { "id": "celerity", "name": "Celerity", "rating": 1, "powers": [] },
+    { "id": "presence", "name": "Presence", "rating": 1, "powers": [] }
+  ],
+  "bloodPotency": 1,
+  "hunger": 1,
+  "humanity": 7,
+  "health": ["empty", "empty", "empty", "empty", "empty"],
+  "willpower": ["empty", "empty", "empty"],
+  "backgrounds": [
+    { "id": "herd",      "name": "Herd",      "rating": 2, "description": "" },
+    { "id": "haven",     "name": "Haven",     "rating": 2, "description": "" },
+    { "id": "resources", "name": "Resources", "rating": 1, "description": "" },
+    { "id": "fame",      "name": "Fame",      "rating": 1, "description": "" },
+    { "id": "allies",    "name": "Allies",    "rating": 3, "description": "" }
+  ],
+  "merits": [
+    { "id": "iron_will",      "name": "Iron Will",      "rating": 3, "description": "" },
+    { "id": "streetwise",     "name": "Streetwise",     "rating": 1, "description": "" },
+    { "id": "stunning",       "name": "Stunning",       "rating": 2, "description": "" },
+    { "id": "craft_mastery",  "name": "Craft Mastery",  "rating": 1, "description": "" }
+  ],
+  "flaws": [
+    { "id": "enemy",               "name": "Enemy",               "rating": 1, "description": "" },
+    { "id": "probationary_member", "name": "Probationary Member", "rating": 1, "description": "" }
+  ],
+  "tenets": ["", "", ""],
+  "touchstones": [
+    { "id": "ts-1", "name": "Kassandra", "conviction": "Não abandono quem depende de mim" },
+    { "id": "ts-2", "name": "Sliver",    "conviction": "Nunca uso meu Sangue para manipular quem eu me importo" },
+    { "id": "ts-3", "name": "",          "conviction": "Nunca tomo sangue sem consentimento" }
+  ],
+  "notes": "Embrace age: 33 | Embrace era: 1990s\n\nXP — Total: 42 | Spent: 22 | Unspent: 5\n\nInventory:\n- Baixo elétrico\n- Caderno com fragmentos de letra — A Primeira Noite\n\nTouchstone status (Kassandra): Relacionamento romântico iniciado",
+  "createdAt": "2026-05-18T00:00:00.000Z",
+  "updatedAt": "2026-05-18T00:00:00.000Z"
+}

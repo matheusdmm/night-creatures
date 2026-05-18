@@ -7,7 +7,8 @@ import DiceRoller from '../components/DiceRoller';
 import { validateSheet } from '../lib/api';
 import type { ValidationResult } from '../lib/api';
 import { exportCharacter } from '../lib/exportImport';
-import ThemeToggle from '../components/ThemeToggle';
+import { encodeCharacter } from '../lib/share';
+import HamburgerMenu from '../components/HamburgerMenu';
 
 type SaveState = 'saved' | 'saving' | 'unsaved';
 
@@ -25,6 +26,7 @@ export default function CharacterBuilder() {
   const [validating, setValidating] = useState(false);
   const [validation, setValidation] = useState<ValidationResult | null>(null);
   const [showValidation, setShowValidation] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (character && !local) setLocal(character);
@@ -53,6 +55,15 @@ export default function CharacterBuilder() {
       updateCharacter(next.id, next);
       setSaveState('saved');
     }, 800);
+  }
+
+  async function handleShare() {
+    if (!local) return;
+    const encoded = encodeCharacter(local);
+    const url = `${window.location.origin}/share?c=${encodeURIComponent(encoded)}`;
+    await navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   async function handleValidate() {
@@ -89,27 +100,39 @@ export default function CharacterBuilder() {
   return (
     <div className="min-h-screen bg-night-bg">
       {/* Sticky top bar */}
-      <div className="sticky top-0 z-10 bg-night-surface/95 backdrop-blur border-b border-night-border px-4 py-2 flex items-center gap-3">
+      <div className="sticky top-0 z-10 bg-night-surface/95 backdrop-blur border-b border-night-border px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3">
         <button
           type="button"
           onClick={() => navigate('/')}
-          className="text-parchment-dim hover:text-parchment font-cinzel text-sm tracking-wide transition-colors"
+          className="text-parchment-dim hover:text-parchment font-cinzel text-sm tracking-wide transition-colors shrink-0"
         >
-          ← Home
+          ← <span className="hidden sm:inline">Home</span>
         </button>
 
-        <h1 className="flex-1 font-cinzel text-parchment tracking-wide truncate">
+        <h1 className="flex-1 min-w-0 font-cinzel text-parchment tracking-wide truncate">
           {local.name || <span className="text-parchment-dim italic">Unnamed</span>}
         </h1>
 
         <button
           type="button"
           onClick={() => exportCharacter(local)}
-          className="font-cinzel text-xs tracking-widest uppercase px-3 py-1 rounded border transition-colors
+          className="hidden sm:block font-cinzel text-xs tracking-widest uppercase px-3 py-1 rounded border transition-colors
             border-night-borderLight text-parchment-dim hover:border-blood hover:text-parchment"
           title="Export as JSON"
         >
           Export
+        </button>
+
+        <button
+          type="button"
+          onClick={handleShare}
+          className={`font-cinzel text-xs tracking-widest uppercase px-3 py-1 rounded border transition-colors
+            ${copied
+              ? 'border-green-600 text-green-400'
+              : 'border-night-borderLight text-parchment-dim hover:border-blood hover:text-parchment'}`}
+          title="Copy share link"
+        >
+          {copied ? '✓ Copied' : 'Share'}
         </button>
 
         <button
@@ -127,7 +150,7 @@ export default function CharacterBuilder() {
           type="button"
           onClick={handleValidate}
           disabled={validating}
-          className={`font-cinzel text-xs tracking-widest uppercase px-3 py-1 rounded border transition-colors
+          className={`hidden sm:block font-cinzel text-xs tracking-widest uppercase px-3 py-1 rounded border transition-colors
             ${validationBadge || 'text-parchment-dim'}
             ${showValidation
               ? 'border-blood bg-blood/20'
@@ -137,11 +160,12 @@ export default function CharacterBuilder() {
           {validating ? 'Checking…' : 'Validate'}
         </button>
 
-        <span className={`text-xs font-cinzel tracking-wider ${saveLabelClass[saveState]}`}>
+        <span className={`hidden sm:inline text-xs font-cinzel tracking-wider ${saveLabelClass[saveState]}`}>
           {saveLabel[saveState]}
         </span>
+        <span className={`sm:hidden w-2 h-2 rounded-full shrink-0 ${saveState === 'saved' ? 'bg-parchment-dim' : saveState === 'saving' ? 'bg-gold' : 'bg-blood-bright'}`} />
 
-        <ThemeToggle />
+        <HamburgerMenu />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">

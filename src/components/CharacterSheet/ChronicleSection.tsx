@@ -81,7 +81,7 @@ export default function ChronicleSection({ tenets, touchstones, notes, onChange 
                   <button
                     type="button"
                     onClick={() => removeTouchstone(t.id)}
-                    className="opacity-0 group-hover:opacity-100 text-blood hover:text-blood-vivid
+                    className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 text-blood hover:text-blood-vivid
                                text-xs transition-opacity"
                   >
                     ✕

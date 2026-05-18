@@ -27,7 +27,7 @@ function AdvantageRow({
     <div className="border-b border-night-border/40 pb-2 mb-2 last:border-0 last:mb-0 last:pb-0 group">
       <div className="flex items-center gap-2">
         <input
-          className="flex-1 text-sm text-parchment bg-transparent border-b border-night-border/30
+          className="flex-1 min-w-0 text-sm text-parchment bg-transparent border-b border-night-border/30
                      focus:outline-none focus:border-blood placeholder:text-parchment-dim/30"
           value={item.name}
           onChange={e => onUpdate({ ...item, name: e.target.value })}
@@ -53,7 +53,7 @@ function AdvantageRow({
         <button
           type="button"
           onClick={onRemove}
-          className="opacity-0 group-hover:opacity-100 text-blood-bright hover:text-blood-vivid
+          className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 text-blood-bright hover:text-blood-vivid
                      text-xs transition-opacity"
         >
           ✕
