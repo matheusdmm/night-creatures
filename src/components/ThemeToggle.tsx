@@ -66,6 +66,9 @@ export default function ThemeToggle() {
       return;
     }
 
+    // Capture as non-null const — TS loses narrowing of `circle` inside async callbacks
+    const c: SVGCircleElement = circle;
+
     if (rafRef.current !== null) {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
@@ -75,9 +78,9 @@ export default function ThemeToggle() {
     const by = window.innerHeight - 30;
     const maxR = Math.hypot(bx, by) * 1.1;
 
-    circle.setAttribute('cx', String(bx));
-    circle.setAttribute('cy', String(by));
-    circle.setAttribute('r', '0');
+    c.setAttribute('cx', String(bx));
+    c.setAttribute('cy', String(by));
+    c.setAttribute('r', '0');
 
     // Different seed each time for unique organic shape
     turbulence?.setAttribute('seed', String(Math.floor(Math.random() * 99) + 1));
@@ -89,7 +92,7 @@ export default function ThemeToggle() {
 
       function tick(now: number) {
         const t = Math.min((now - startTime) / VT_DURATION, 1);
-        circle.setAttribute('r', String(easeOutCubic(t) * maxR));
+        c.setAttribute('r', String(easeOutCubic(t) * maxR));
         if (t < 1) {
           rafRef.current = requestAnimationFrame(tick);
         } else {
@@ -101,7 +104,7 @@ export default function ThemeToggle() {
     });
 
     transition.finished.then(() => {
-      circle.setAttribute('r', '0');
+      c.setAttribute('r', '0');
     });
   }
 
