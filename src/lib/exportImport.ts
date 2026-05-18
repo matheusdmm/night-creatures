@@ -33,7 +33,7 @@ export async function parseImportedCharacter(file: File): Promise<Character> {
 
   const now = new Date().toISOString();
   return {
-    ...(d as Character),
+    ...(d as unknown as Character),
     id: crypto.randomUUID(),
     createdAt: now,
     updatedAt: now,
