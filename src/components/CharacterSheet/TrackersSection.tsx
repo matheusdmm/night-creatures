@@ -61,6 +61,24 @@ export default function TrackersSection({ character, onChange }: Props) {
             variant="hunger"
             onChange={handleHungerClick}
           />
+          <div className="flex gap-2 mt-1">
+            <button
+              type="button"
+              onClick={() => onChange({ hunger: Math.max(0, character.hunger - 1) })}
+              disabled={character.hunger === 0}
+              className="px-2 py-0.5 text-xs border border-parchment-dim/40 rounded text-parchment-dim hover:border-blood hover:text-blood disabled:opacity-30 disabled:cursor-default transition-colors"
+            >
+              −
+            </button>
+            <button
+              type="button"
+              onClick={() => onChange({ hunger: Math.min(5, character.hunger + 1) })}
+              disabled={character.hunger === 5}
+              className="px-2 py-0.5 text-xs border border-parchment-dim/40 rounded text-parchment-dim hover:border-blood hover:text-blood disabled:opacity-30 disabled:cursor-default transition-colors"
+            >
+              +
+            </button>
+          </div>
         </TrackerBlock>
 
         <TrackerBlock label={`Humanity — ${character.humanity}/10`}>
